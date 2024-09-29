@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700");
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
+
+#nav{
+    padding: 1% 1% 1% 1%;
+    position: sticky;
+    top: 0;
+    border-radius: 5px;
+}
+.nav_shown{
+    background-color: #212426;
+    z-index: 99;
+}
+
+.nav_hidden{
+    width: fit-content;
+    z-index: 99;
+}
+
+.button{
+    border-radius: 10px;
+    margin: 5px;
+    background-color: #343739;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    align-self: self-start;
+}
+
+.header_shown a{
+    padding: 15px 30px;
+    margin: 5px;
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+    color: #a1a1a1;
+    font-size: 1.5rem;
+    font-family: var(--font-raleway);
+    border-radius: 25px;
+    text-decoration: initial;
+}
+
+.header_shown a.active{
+    font-size: 1.6rem;
+    background-color: rgba(161, 161, 161, 0.07);
+}
+
+.header_shown a:hover{
+    background-color: #343739;
+}
+
+.header_hidden{
+    display: none;
+}
+
+@media (min-width: 800px){
+    .header_shown, #nav {
+        display: flex;
+    }
+    .nav_shown{
+        flex-direction: column;
+        align-items: center;
+    }
+    .nav_hidden{
+        flex-direction: inherit;
+        align-items: center;
+    }
+}

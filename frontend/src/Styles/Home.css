@@ -1,0 +1,31 @@
+
+.home h1{
+    margin: 1%;
+}
+
+.home h2{
+    margin: 2% 5% 3% 5%;
+    color: #f9d3b4;
+    font-size: 2rem;
+}
+
+.introduction p{
+    margin: 2% 5% 3% 5%;
+    padding: 0.5%;
+    background-color: #313131;
+    color: #f9d3b4;
+    border-radius: 4px;
+    align-self: center;
+}
+
+.mypic{
+    width: 400px;
+    height: 600px;
+    margin: 2% 3% 2% 3%;
+}
+
+@media(min-width: 800px){
+    .introduction{
+        display: flex;
+    }
+}
