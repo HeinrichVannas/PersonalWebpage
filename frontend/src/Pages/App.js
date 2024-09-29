@@ -12,12 +12,12 @@ const App = () => {
     const [movies, setMovies] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const searchMovies = async (title) => {
-        const response = await fetch(`${Local_API}/${title}`);
+        const response = await fetch(title =! "" ? `${Local_API}/${title}`: `${Local_API}`);
         const data = await response.json();
         setMovies(data);
     }
     useEffect(() => {
-        searchMovies('shrek');
+        searchMovies("");
     }, []);
     return(<div className="app">
             <h1>Mingi filmi veebileht</h1>

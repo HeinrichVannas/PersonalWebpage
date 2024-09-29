@@ -21,8 +21,8 @@ public class MovieController {
     @CrossOrigin
     @GetMapping()
     public List<Movie> getMovies(){
-        return new ArrayList<>();//movieService.getMovies();
-    }
+        return movieService.getMovies();
+        }
 
     @CrossOrigin
     @GetMapping("{title}")

@@ -42,6 +42,7 @@ h1 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     width: fit-content;
+    margin: 2%;
 }
 
 .search {
