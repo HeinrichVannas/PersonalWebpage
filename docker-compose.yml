@@ -1,9 +1,7 @@
-version: '3.8'
-
 services:
   backend:
     build:
-      context: ./backend/target
+      context: ./backend/
       dockerfile: Dockerfile
     container_name: backend-service
     ports:
@@ -24,6 +22,9 @@ services:
     container_name: frontend-service
     ports:
       - "3000:3000"
+    environment:
+      - REACT_APP_LOCAL_API=http://localhost:8080/api/v1/movie
+      - REACT_APP_EXTERNAL_API=http://www.omdbapi.com?apikey=a93a45e6
     networks:
       - app-network
 
@@ -43,7 +44,6 @@ services:
 
 networks:
   app-network:
-    driver: bridge
 
 volumes:
   postgres-data:

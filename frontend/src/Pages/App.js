@@ -4,8 +4,8 @@ import SearchIcon from '../Images/search.svg';
 import MovieCard from "../Components/MovieCard";
 
 
-const API_URL = 'http://www.omdbapi.com?apikey=a93a45e6';
-const Local_API = 'http://localhost:8080/api/v1/movie';
+const API_URL = process.env.REACT_APP_EXTERNAL_API;
+const Local_API = process.env.REACT_APP_API;
 // ${Local_API}/${title}
 //${API_URL}&s=${title}
 const App = () => {
