@@ -48,12 +48,3 @@ databases:
     plan: free # Choose a plan that fits your needs
     ipAllowList: # Define IPs that can connect, or leave empty for default
       - source: 0.0.0.0/0 # Allows connections from anywhere (not recommended for production)
-
-# Environment groups (optional)
-envVarGroups:
-  - name: common-settings
-    envVars:
-      - key: STRIPE_API_KEY
-        sync: false # Prompt for value in Render Dashboard
-      - key: OTHER_ENV_VARIABLE
-        value: some_value # Example for other environment variables
