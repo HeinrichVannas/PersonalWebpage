@@ -46,7 +46,6 @@ databases:
     databaseName: mydb # Your database name
     user: myuser # Optional, you can specify a user
     plan: free # Choose a plan that fits your needs
-    diskSizeGB: 1 # Set disk size, adjust as necessary
     ipAllowList: # Define IPs that can connect, or leave empty for default
       - source: 0.0.0.0/0 # Allows connections from anywhere (not recommended for production)
 
