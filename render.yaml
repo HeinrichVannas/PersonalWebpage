@@ -16,7 +16,7 @@ services:
     repo: https://github.com/HeinrichVannas/PersonalWebpage # Replace with your backend repo URL
     numInstances: 2 # You can adjust the number of instances
     region: frankfurt # Choose the region closest to you
-    plan: starter # Choose your plan (starter is free)
+    plan: free # Choose your plan (starter is free)
     branch: main # Change this to your main branch
     dockerfilePath: ./backend/Dockerfile
     autoDeploy: true # Enable automatic deploys on push
