@@ -20,7 +20,6 @@ services:
     branch: main # Change this to your main branch
     dockerfilePath: ./backend/Dockerfile
     autoDeploy: true # Enable automatic deploys on push
-    maxShutdownDelaySeconds: 120 # Increase graceful shutdown period
     envVars: # Environment variables for your backend
       - key: DATABASE_URL
         fromDatabase: # Reference a property of a PostgreSQL database
