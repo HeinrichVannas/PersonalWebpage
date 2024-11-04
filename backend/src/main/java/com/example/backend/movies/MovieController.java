@@ -2,15 +2,12 @@ package com.example.backend.movies;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:4000"})
 @RestController
 @RequestMapping(path = "api/v1/movie/")
 public class MovieController {
@@ -27,31 +24,26 @@ public class MovieController {
         return movieService.getMovies();
         }
 
-    @GetMapping("/data")
-    public ResponseEntity<String> getSecureData() {
-        return ResponseEntity.ok("Movie data");
-    }
-
     @CrossOrigin
     @GetMapping("{title}")
     public List<Movie> getSingleMovie(@PathVariable String title) {
         String newTitle = '%' + title + '%';
         return movieService.getMoviesByTitle(newTitle);}
 
-    @PostMapping
+    @PostMapping("protected")
     public void registerNewMovie(@RequestBody Movie movie){
         movieService.addNewMovie(movie);
     }
-    @DeleteMapping(path="{movieId}")
+    @DeleteMapping(path="protected/{movieId}")
     public void deleteMovie(@PathVariable("movieId") Long movieId){
         movieService.deleteMovie(movieId);
     }
-    @PutMapping(path="{movieId}")
+    @PutMapping(path="protected/{movieId}")
     public void updateMovie(@PathVariable("movieId") Long movieId, @RequestParam(required = false) String poster){
         movieService.updateMovie(movieId, poster);
     }
     @RequestMapping(
-            value = "/addMovies",
+            value = "protected/addMovies",
             method = RequestMethod.POST)
     public void addNewMovies(@RequestBody List<Map<String, String>> movies){
         for(Map<String, String> movie : movies){
