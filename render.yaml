@@ -1,0 +1,61 @@
+#################################################################
+# Example render.yaml                                           #
+# This file is configured for a Vue/React frontend, Spring Boot #
+# backend, and PostgreSQL database deployment on Render.       #
+#################################################################
+
+previews:
+  generation: automatic # Enable preview environments
+
+# List all services *except* PostgreSQL databases here
+services:
+  # A web service for the Spring Boot backend
+  - type: web
+    runtime: docker # Use Java runtime for Spring Boot
+    name: spring-boot-backend
+    repo: https://github.com/HeinrichVannas/PersonalWebpage # Replace with your backend repo URL
+    numInstances: 2 # You can adjust the number of instances
+    region: frankfurt # Choose the region closest to you
+    plan: starter # Choose your plan (starter is free)
+    branch: main # Change this to your main branch
+    dockerfilePath: ./backend/Dockerfile
+    autoDeploy: true # Enable automatic deploys on push
+    maxShutdownDelaySeconds: 120 # Increase graceful shutdown period
+    envVars: # Environment variables for your backend
+      - key: DATABASE_URL
+        fromDatabase: # Reference a property of a PostgreSQL database
+          name: my-postgres-db
+          property: connectionString
+      - key: APP_SECRET
+        generateValue: true # Generate a base64-encoded value for app secret
+
+  # A web service for the Vue/React frontend
+  - type: web
+    runtime: static # Use static runtime for frontend
+    name: frontend-app
+    repo: https://github.com/HeinrichVannas/PersonalWebpage # Replace with your frontend repo URL
+    buildCommand: cd backend && npm run build # Build command for your Vue/React app
+    staticPublishPath: ./build # Adjust this if your build output is different (e.g., for React it might be ./build)
+    previews:
+      generation: automatic # Enable service previews
+    autoDeploy: true # Enable automatic deploys on push
+
+# List all PostgreSQL databases here
+databases:
+  # A PostgreSQL database for the backend
+  - name: my-postgres-db
+    databaseName: mydb # Your database name
+    user: myuser # Optional, you can specify a user
+    plan: free # Choose a plan that fits your needs
+    diskSizeGB: 1 # Set disk size, adjust as necessary
+    ipAllowList: # Define IPs that can connect, or leave empty for default
+      - source: 0.0.0.0/0 # Allows connections from anywhere (not recommended for production)
+
+# Environment groups (optional)
+envVarGroups:
+  - name: common-settings
+    envVars:
+      - key: STRIPE_API_KEY
+        sync: false # Prompt for value in Render Dashboard
+      - key: OTHER_ENV_VARIABLE
+        value: some_value # Example for other environment variables
