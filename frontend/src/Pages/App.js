@@ -49,7 +49,7 @@ const App = () => {
 
     }, []);
     return(<div className="app">
-            <h1>Mingi filmi veebileht</h1>
+            <h1>Some film searching page</h1>
             <div className="search">
                 <input placeholder="Search for movies" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} onKeyDown={event => {if(event.key === 'Enter'){searchMovies(searchTerm)}}}/>
                 <img src={SearchIcon} alt="search" onClick={() => searchMovies(searchTerm)} />

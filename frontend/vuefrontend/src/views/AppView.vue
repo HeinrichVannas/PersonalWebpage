@@ -25,7 +25,7 @@ onMounted(() => {
 
 <template>
   <div className="app">
-    <h1>Mingi filmi veebileht</h1>
+    <h1>Some film searching page</h1>
     <div class="search">
       <input
           placeholder="Search for movies"
