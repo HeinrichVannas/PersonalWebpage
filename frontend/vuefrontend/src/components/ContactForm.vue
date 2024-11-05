@@ -6,6 +6,7 @@ const email = ref('');
 const message = ref('');
 const showEmail = ref(false);
 const isValidEmail = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+
 const validateEmail = (e) => {
   const inputValue = e.target.value;
   if (inputValue && inputValue.match(isValidEmail)) {
@@ -16,11 +17,31 @@ const validateEmail = (e) => {
   }
 };
 
-const handleSubmit = () => {
-  if (email.value && email.value.match(isValidEmail)) {
-    alert("Thanks for subscribing!"); // Success message
-  } else {
-    alert("Enter a valid email"); // Error message
+const handleSubmit = async () => {
+  try{
+    if (email.value && email.value.match(isValidEmail)) {
+        const response = await fetch("http://localhost:8080/api/v1/contact/send", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: name.value,
+            email: email.value,
+            message: message.value,
+          }),
+        });
+        if (response.ok) {
+          name.value = email.value = message.value = ''; // Clear form
+        } else {
+          console.log(response)
+        }
+      alert("Thanks for subscribing!"); // Success message
+    } else {
+      alert("Enter a valid email"); // Error message
+    }
+  } catch (error) {
+    console.log(error)
   }
 };
 </script>

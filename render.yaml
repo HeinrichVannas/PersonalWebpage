@@ -8,7 +8,7 @@
 services:
   # A web service for the Spring Boot backend
   - type: web
-    runtime: docker # Use Java runtime for Spring Boot
+    runtime: docker
     name: spring-boot-backend
     repo: https://github.com/HeinrichVannas/PersonalWebpage # Replace with your backend repo URL
     numInstances: 2 # You can adjust the number of instances
@@ -30,8 +30,8 @@ services:
     runtime: static # Use static runtime for frontend
     name: frontend-app
     repo: https://github.com/HeinrichVannas/PersonalWebpage # Replace with your frontend repo URL
-    buildCommand: cd backend && npm run build # Build command for your Vue/React app
-    staticPublishPath: ./build # Adjust this if your build output is different (e.g., for React it might be ./build)
+    buildCommand: cd frontend/vuefrontend && npm run build # Build command for your Vue/React app
+    staticPublishPath: ./dist # Adjust this if your build output is different (e.g., for React it might be ./build)
     previews:
       generation: automatic # Enable service previews
     autoDeploy: true # Enable automatic deploys on push
