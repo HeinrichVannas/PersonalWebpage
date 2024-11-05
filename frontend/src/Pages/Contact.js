@@ -12,11 +12,11 @@ const Contact = () => {
                 <ContactForm/>
                 <div className="contacts">
                     <div className="contact">
-                        <a href="https://www.linkedin.com/in/heinrich-vannas-b02aa9240" target="_blank"><img src={LinkedIn} alt="LinkedIn icon"/></a>
+                        <a href="https://www.linkedin.com/in/heinrich-vannas-b02aa9240" target="_blank" rel="noreferrer"><img src={LinkedIn} alt="LinkedIn icon"/></a>
                         <p>LinkedIn</p>
                     </div>
                     <div className="contact">
-                        <a href="https://www.facebook.com/heinrich.vannas" target="_blank"><img src={Facebook} alt="Facebook icon"/></a>
+                        <a href="https://www.facebook.com/heinrich.vannas" target="_blank" rel="noreferrer"><img src={Facebook} alt="Facebook icon"/></a>
                         <p>Facebook</p>
                     </div>
                 </div>
