@@ -1,12 +1,12 @@
-import {Component, useState} from "react";
+import {useState} from "react";
 
 
 const ContactForm = () =>{
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [message, setMessage] = useState("")
-    const [showEmail, showNoValidEmail] = useState(true)
-    const isValidEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+    const [, showNoValidEmail] = useState(true)
+    const isValidEmail = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
     const validateEmail = (e) => {
         if(e.target?.value && e.target.value.match(isValidEmail)){
             showNoValidEmail(false);
