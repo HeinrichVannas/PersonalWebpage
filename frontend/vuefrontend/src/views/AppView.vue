@@ -16,15 +16,15 @@ const searchIcon = SearchIcon;
       //movies.value = await (await fetch(title ? `${Local_API}/movie/${title}` : `${Local_API}/movie/`)).json()
       const response = await fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=a93a45e6&s=${title}`)
       const data = await response.json();
-      movies.value = data
-      await setMovies(data);
+      movies.value = data.Search
+      await setMovies(data.Search);
     } catch (err) {
       console.error("Error fetching movies:", err.message);
     }
   }
 async function setMovies(movies) {
   try {
-    await fetch(`${Local_API}/protected/addMovies`, {
+    await fetch(`${Local_API}/movie/protected/addMovies`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

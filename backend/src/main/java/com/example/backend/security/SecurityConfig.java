@@ -22,7 +22,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        ApiKeyAuthFilter filter = new ApiKeyAuthFilter(new AntPathRequestMatcher("/api/v1/movie/protected/**"));
+        ApiKeyAuthFilter filter = new ApiKeyAuthFilter(new AntPathRequestMatcher("/api/v1/movie/protected/"));
         filter.setAuthenticationManager(authentication -> {
             String apiKey = (String) authentication.getPrincipal();
             String apiSecret = (String) authentication.getCredentials();
@@ -40,7 +40,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/api/v1/movie/protected").authenticated()
+                                .requestMatchers("/api/v1/movie/protected/").authenticated()
                                 .anyRequest().permitAll()
                 )
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
