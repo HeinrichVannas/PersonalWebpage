@@ -35,6 +35,9 @@ services:
     previews:
       generation: automatic # Enable service previews
     autoDeploy: true # Enable automatic deploys on push
+    envVars:
+      - key: NODE_VERSION
+        value: 21.7.1
 
 # List all PostgreSQL databases here
 databases:
