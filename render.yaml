@@ -8,15 +8,14 @@
 services:
   # A web service for the Spring Boot backend
   - type: web
-    runtime: java
+    runtime: docker
     name: spring-boot-backend
     repo: https://github.com/HeinrichVannas/PersonalWebpage # Replace with your backend repo URL
     numInstances: 1 # You can adjust the number of instances
     region: frankfurt # Choose the region closest to you
     plan: free # Choose your plan (starter is free)
     branch: main # Change this to your main branch
-    buildCommand: mvn clean install # Or "mvn clean install" if using Maven directly
-    startCommand: java -jar target/backend-0.0.1-SNAPSHOT.jar
+    dockerfilePath: ./backend/Dockerfile
     autoDeploy: true # Enable automatic deploys on push
     envVars: # Environment variables for your backend
       - key: DATABASE_URL
@@ -47,5 +46,6 @@ databases:
     databaseName: mydb # Your database name
     user: myuser # Optional, you can specify a user
     plan: free # Choose a plan that fits your needs
+    region: frankfurt
     ipAllowList: # Define IPs that can connect, or leave empty for default
       - source: 0.0.0.0/0 # Allows connections from anywhere (not recommended for production)

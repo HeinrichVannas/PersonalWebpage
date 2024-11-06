@@ -1,11 +1,11 @@
 FROM maven:latest AS build
-COPY src /app/src
-COPY pom.xml /app
-WORKDIR /app
-RUN mvn clean install -U
 
-FROM openjdk:21
 WORKDIR /app
-COPY --from=build /app/target/backend-0.0.3-SNAPSHOT.jar /app/backend.jar
-EXPOSE 8080
-CMD ["java", "-jar", "/app/backend.jar"]
+
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+RUN ./mvnw dependency:go-offline
+
+COPY src ./src
+
+CMD ["./mvnw", "spring-boot:run"]
