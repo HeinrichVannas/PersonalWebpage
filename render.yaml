@@ -18,6 +18,8 @@ services:
     dockerfilePath: ./backend/Dockerfile
     autoDeploy: true # Enable automatic deploys on push
     envVars: # Environment variables for your backend
+      - key: PORT
+        value: 10000
       - key: DATABASE_URL
         fromDatabase: # Reference a property of a PostgreSQL database
           name: my-postgres-db

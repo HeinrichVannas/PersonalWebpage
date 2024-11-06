@@ -20,7 +20,7 @@ const validateEmail = (e) => {
 const handleSubmit = async () => {
   try{
     if (email.value && email.value.match(isValidEmail)) {
-        const response = await fetch("http://localhost:8080/api/v1/contact/send", {
+        const response = await fetch("https://spring-boot-backend-7oo0.onrender.com/api/v1/contact/send", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

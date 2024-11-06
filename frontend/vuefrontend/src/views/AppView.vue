@@ -9,7 +9,7 @@ const movies = ref([]);
 const searchIcon = SearchIcon;
 
 // Method to fetch movies
-  const Local_API = "http://localhost:8080/api/v1/movie";
+  const Local_API = "https://spring-boot-backend-7oo0.onrender.com/api/v1/movie";
 
   async function searchMovies(title) {
     try {
