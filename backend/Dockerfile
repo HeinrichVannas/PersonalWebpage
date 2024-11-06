@@ -1,7 +1,7 @@
 FROM maven:latest AS build
+WORKDIR /app
 COPY backend/pom.xml /app
 COPY backend/src /app/src
-WORKDIR /app
 RUN mvn clean install -U
 
 FROM openjdk:21
