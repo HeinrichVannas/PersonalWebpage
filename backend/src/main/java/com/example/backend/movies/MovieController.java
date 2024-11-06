@@ -42,6 +42,7 @@ public class MovieController {
     public void updateMovie(@PathVariable("movieId") Long movieId, @RequestParam(required = false) String poster){
         movieService.updateMovie(movieId, poster);
     }
+    @CrossOrigin(origins = {"https://frontend-app-7l3a.onrender.com/"})
     @RequestMapping(
             value = "protected/addMovies",
             method = RequestMethod.POST)
