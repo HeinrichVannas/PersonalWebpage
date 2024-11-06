@@ -13,7 +13,6 @@
     <ul>
       <li><a href="https://github.com/HeinrichVannas/NRGProjekt">Sudoku in Java for a High school project</a></li>
       <li><a href="https://github.com/HeinrichVannas/Sissejuhatus_erialasse_tp-E_veebileht">Very basic webpage for a university course</a></li>
-      <li><a href="https://github.com/vulfff/projekt_kasiino">Small casino in Java for a university course</a></li>
       <li><a href="https://github.com/HeinrichVannas/PersonalWebpage">This current webpage for personal development</a></li>
     </ul>
   </div>
