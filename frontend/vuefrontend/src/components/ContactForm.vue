@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue';
+const Local_API = process.env.VUE_APP_BACKEND_API_URL;
 
 const name = ref('');
 const email = ref('');
@@ -20,7 +21,7 @@ const validateEmail = (e) => {
 const handleSubmit = async () => {
   try{
     if (email.value && email.value.match(isValidEmail)) {
-        const response = await fetch("https://spring-boot-backend-7oo0.onrender.com/api/v1/contact/send", {
+        const response = await fetch(`${Local_API}/contact/send`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
