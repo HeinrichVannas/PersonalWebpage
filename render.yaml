@@ -14,7 +14,7 @@ services:
     numInstances: 1 # You can adjust the number of instances
     region: frankfurt # Choose the region closest to you
     plan: free # Choose your plan (starter is free)
-    branch: main # Change this to your main branch
+    branch: master # Change this to your main branch
     dockerfilePath: ./backend/Dockerfile
     autoDeploy: true # Enable automatic deploys on push
     envVars: # Environment variables for your backend
