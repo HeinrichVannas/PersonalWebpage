@@ -9,11 +9,11 @@ const movies = ref([]);
 const searchIcon = SearchIcon;
 
 // Method to fetch movies
-  const Local_API = "https://spring-boot-backend-7oo0.onrender.com/api/v1/movie";
+  const Local_API = process.env.VUE_APP_BACKEND_API_URL;
 
   async function searchMovies(title) {
     try {
-      movies.value = await (await fetch(title ? `${Local_API}/${title}` : `${Local_API}/`)).json()
+      movies.value = await (await fetch(title ? `${Local_API}/movie/${title}` : `${Local_API}/movie`)).json()
     } catch (err) {
       console.error("Error fetching movies:", err.message);
     }
