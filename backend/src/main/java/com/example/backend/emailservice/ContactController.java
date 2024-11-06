@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:4000"})
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:4000", "frontend-app-7l3a.onrender.com"})
 @RestController
 @RequestMapping("/api/v1/contact")
 public class ContactController {
