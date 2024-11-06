@@ -30,7 +30,7 @@ services:
     runtime: static # Use static runtime for frontend
     name: frontend-app
     repo: https://github.com/HeinrichVannas/PersonalWebpage # Replace with your frontend repo URL
-    buildCommand: cd frontend/vuefrontend && npm run build # Build command for your Vue/React app
+    buildCommand: cd frontend/vuefrontend && npm install && npm run build # Build command for your Vue/React app
     staticPublishPath: ./dist # Adjust this if your build output is different (e.g., for React it might be ./build)
     previews:
       generation: automatic # Enable service previews
