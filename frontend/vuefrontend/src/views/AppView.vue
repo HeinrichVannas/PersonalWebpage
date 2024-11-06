@@ -17,7 +17,7 @@ const searchIcon = SearchIcon;
       const response = await fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=a93a45e6&s=${title}`)
       const data = await response.json();
       movies.value = data
-      setMovies(data);
+      await setMovies(data);
     } catch (err) {
       console.error("Error fetching movies:", err.message);
     }
