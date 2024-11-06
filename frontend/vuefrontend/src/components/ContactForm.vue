@@ -37,7 +37,7 @@ const handleSubmit = async () => {
         } else {
           console.log(response)
         }
-      alert("Thanks for subscribing!"); // Success message
+      alert("Thanks for the Message!"); // Success message
     } else {
       alert("Enter a valid email"); // Error message
     }

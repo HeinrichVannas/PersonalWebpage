@@ -13,7 +13,7 @@ const searchIcon = SearchIcon;
 
   async function searchMovies(title) {
     try {
-      movies.value = await (await fetch(title ? `${Local_API}/movie/${title}` : `${Local_API}/movie`)).json()
+      movies.value = await (await fetch(title ? `${Local_API}/movie/${title}` : `${Local_API}/movie/`)).json()
     } catch (err) {
       console.error("Error fetching movies:", err.message);
     }
