@@ -152,4 +152,20 @@ function toggleHeader() {
 function toggleNav() {
   isNavHidden.value = !isNavHidden.value;
 }
+
+import { onMounted, onUnmounted } from 'vue';
+
+let pingInterval;
+
+onMounted(() => {
+  pingInterval = setInterval(() => {
+    fetch('https://spring-boot-backend-eg70.onrender.com/')
+        .then(() => console.log('Ping successful'))
+        .catch(err => console.error('Ping failed', err));
+  }, 900000); // Every 15 minutes
+});
+
+onUnmounted(() => {
+  clearInterval(pingInterval); // Cleanup on unmount
+});
 </script>

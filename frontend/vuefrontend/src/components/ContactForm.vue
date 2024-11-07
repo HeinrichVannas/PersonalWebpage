@@ -1,4 +1,5 @@
 <script setup>
+/* global grecaptcha */
 import { ref } from 'vue';
 const Local_API = process.env.VUE_APP_BACKEND_API_URL;
 
@@ -7,6 +8,7 @@ const email = ref('');
 const message = ref('');
 const showEmail = ref(false);
 const isValidEmail = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+const recaptchaToken = ref('');
 
 const validateEmail = (e) => {
   const inputValue = e.target.value;
@@ -19,30 +21,34 @@ const validateEmail = (e) => {
 };
 
 const handleSubmit = async () => {
-  try{
+  try {
     if (email.value && email.value.match(isValidEmail)) {
-        const response = await fetch(`${Local_API}/contact/send`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: name.value,
-            email: email.value,
-            message: message.value,
-          }),
-        });
-        if (response.ok) {
-          name.value = email.value = message.value = ''; // Clear form
-        } else {
-          console.log(response)
-        }
-      alert("Thanks for the Message!"); // Success message
+      recaptchaToken.value = await grecaptcha.execute('6Lc46XcqAAAAAG589IT-PcU6i-MAnHY5R90Vx097', { action: 'submit' });
+
+      const response = await fetch(`${Local_API}/contact/send`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name.value,
+          email: email.value,
+          message: message.value,
+          recaptchaToken: recaptchaToken.value,
+        }),
+      });
+
+      if (response.ok) {
+        name.value = email.value = message.value = '';
+        alert("Thanks for the Message!");
+      } else {
+        console.log(response);
+      }
     } else {
-      alert("Enter a valid email"); // Error message
+      alert("Enter a valid email");
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 </script>
@@ -50,29 +56,28 @@ const handleSubmit = async () => {
 <template>
   <div class="ContactForm">
     <form class="contact-form" id="contact-form" @submit.prevent="handleSubmit" method="POST">
-      <label :for="'name'">Name</label>
+      <label for="name">Name</label>
       <input
           type="text"
           class="form-control"
           v-model="name"
       />
 
-      <label :for="'exampleInputEmail1'">Email address</label>
+      <label for="exampleInputEmail1">Email address</label>
       <input
           type="email"
           class="form-control"
           aria-describedby="emailHelp"
           v-model="email"
-      @change="validateEmail"
+          @change="validateEmail"
       />
 
-      <label :for="'message'">Message</label>
+      <label for="message">Message</label>
       <textarea
           class="form-control"
           rows="5"
           v-model="message"
       ></textarea>
-
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>
