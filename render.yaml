@@ -28,7 +28,7 @@ services:
   # A web service for the Vue/React frontend
   - type: web
     runtime: static # Use static runtime for frontend
-    name: frontend-app
+    name: heinrichvannas
     repo: https://github.com/HeinrichVannas/PersonalWebpage # Replace with your frontend repo URL
     buildCommand: cd frontend/vuefrontend && npm install && npm run build # Build command for your Vue/React app
     staticPublishPath: frontend/vuefrontend/dist # Adjust this if your build output is different (e.g., for React it might be ./build)
