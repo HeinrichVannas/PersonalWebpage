@@ -9,12 +9,15 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/api/v1/contact")
 public class ContactController {
 
+    private static Logger log = LogManager.getLogger(ContactController.class);
     private final EmailService emailService;
     @Value("${recaptcha.secret.key}")
     private String RECAPTCHA_SECRET_KEY;
@@ -25,15 +28,14 @@ public class ContactController {
 
     @PostMapping("/send")
     public ResponseEntity<String> sendContactEmail(@RequestBody EmailRequest email) {
-        System.out.println("is api");
+        log.info("Send Contact API requested");
         try {
             boolean isReCaptchaValid = verifyReCaptcha(email.getRecaptchaToken());
-            System.out.println(isReCaptchaValid);
             if (!isReCaptchaValid) {
+                log.info("reCaptcha declined");
                 return new ResponseEntity<>("reCAPTCHA verification failed", HttpStatus.BAD_REQUEST);
             }
             String response = emailService.sendEmail(email.getEmail(), email.getName(), email.getMessage());
-            System.out.println(response);
             return new ResponseEntity<>("Email sent successfully", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Failed to send email", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -53,6 +55,7 @@ public class ContactController {
         RestTemplate restTemplate = new RestTemplate();
         ReCaptchaResponse response = restTemplate.postForObject(builder.toUriString(), null, ReCaptchaResponse.class);
 
+        log.info("Action: " + response.getAction() + ", Hostname: " + response.getHostname() + ", Score: " + response.getScore() + ", Error codes" + response.getErrorCodes());
         return response != null && response.isSuccess();
     }
 }
