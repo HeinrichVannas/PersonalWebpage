@@ -8,7 +8,7 @@ import Facebook from "../assets/Facebook_logo.png"
 <template>
   <div>
     <h1>Ways to contact me</h1>
-    <div className="contactView">
+    <div className="container">
       <ContactForm/>
       <div className="contacts">
         <div className="contact">
@@ -25,9 +25,15 @@ import Facebook from "../assets/Facebook_logo.png"
 </template>
 
 <style scoped>
-.contactView{
+.container {
+  width: 100%;
+  margin-top: 3rem;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
+
 .contacts{
   display: flex;
   flex-direction: column;

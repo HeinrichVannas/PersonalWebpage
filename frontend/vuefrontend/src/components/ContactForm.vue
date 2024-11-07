@@ -79,6 +79,31 @@ const handleSubmit = async () => {
 </template>
 
 <style scoped>
+.contacts{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2%;
+}
+
+.contact{
+  display: flex;
+  align-items: center;
+  margin-top: 2%;
+}
+
+.contact img{
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.contact p{
+  font-size: 2.5rem;
+  padding-left: 10px;
+}
+
 .ContactForm{
   display: flex;
   flex-direction: column;
@@ -92,11 +117,7 @@ const handleSubmit = async () => {
   flex-direction: column;
   width: 100%;
 }
-@media (max-width: 800px){
-  .ContactForm{
-    width: 80%;
-  }
-}
+
 .contact-form label {
   align-self: flex-start;
   color: #f9d3b4;
@@ -130,5 +151,10 @@ button {
   font-size: 1.5rem;
   cursor: pointer;
   margin-top: 2%;
+}
+@media (max-width: 800px){
+  .ContactForm{
+    width: 80%;
+  }
 }
 </style>

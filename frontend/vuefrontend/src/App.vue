@@ -51,8 +51,6 @@ h1 {
   width: fit-content;
   margin: 2%;
 }
-@import url("https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700");
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
 
 #nav{
   padding: 1% 1% 1% 1%;
@@ -119,14 +117,33 @@ h1 {
     align-items: center;
   }
 }
+@media screen and (max-width: 800px) {
+  .header_shown a{
+    padding: 10px 30px;
+    font-size: 1.2rem;
+  }
+  .header_shown a.is-active{
+    font-size: 1.4rem;
+    background-color: rgba(161, 161, 161, 0.07);
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .button{
+    width: 40px;
+    height: 40px;
+  }
+}
 </style>
 <script setup>
 
 import ThreeLines from "./assets/three-lines.png";
 import { ref } from 'vue';
 
-const isHeaderHidden = ref(false);
-const isNavHidden = ref(false);
+const isHeaderHidden = ref(true);
+const isNavHidden = ref(true);
 
 function toggleHeader() {
   isHeaderHidden.value = !isHeaderHidden.value;

@@ -8,7 +8,7 @@ const searchTerm = ref('');
 const movies = ref([]);
 const searchIcon = SearchIcon;
 
-// Method to fetch movies
+
   const Local_API = process.env.VUE_APP_BACKEND_API_URL;
 
   async function searchMovies(title) {
@@ -117,5 +117,43 @@ onMounted(() => {
   font-size: 1.25rem;
   color: #f9d3b4;
   font-family: var(--font-raleway);
+}
+@media screen and (max-width: 600px) {
+  .app {
+    padding: 4rem 2rem;
+  }
+
+  .search {
+    padding: 1rem 1.75rem;
+    width: 100%;
+  }
+
+  .search input {
+    font-size: 1rem;
+  }
+
+  .search img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .app {
+    padding: 4rem 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .container {
+    margin-top: 2rem;
+  }
+
+  .movie {
+    width: 100%;
+    margin: 1rem;
+  }
 }
 </style>
